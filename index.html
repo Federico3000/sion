@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Moderno</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome (Iconos) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #2563eb; /* Azul moderno */
+            --color-secondary: #1e40af; /* Azul más oscuro */
+            --color-success: #10b981; /* Verde */
+            --color-danger: #ef4444; /* Rojo */
+            --color-warning: #f59e0b; /* Amarillo */
+            --color-background: white; /* Fondo blanco */
+            --color-text: #1e293b; /* Texto oscuro */
+            --color-card: #ffffff; /* Fondo de la tarjeta */
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--color-background);
+            color: var(--color-text);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-card {
+            background: var(--color-card);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem;
+        }
+
+        .login-card .logo {
+            width: 120px; /* Tamaño más grande */
+            height: 120px; /* Tamaño más grande */
+            border-radius: 50%; /* Hace la imagen redonda */
+            object-fit: cover; /* Asegura que la imagen se ajuste correctamente */
+            margin-bottom: 1.5rem;
+        }
+
+        .login-card h2 {
+            font-weight: 600;
+            color: var(--color-text);
+            margin-bottom: 0.5rem;
+        }
+
+        .login-card .text-muted {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .login-card .form-label {
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        .login-card .form-control {
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            padding: 0.75rem;
+            font-size: 0.875rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .login-card .form-control:focus {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .login-card .btn-primary {
+            background: var(--color-primary);
+            border: none;
+            border-radius: 8px;
+            padding: 0.75rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease;
+        }
+
+        .login-card .btn-primary:hover {
+            background: var(--color-secondary);
+        }
+
+        .login-card .btn-outline-secondary {
+            border-radius: 8px;
+            padding: 0.75rem;
+            transition: background-color 0.2s ease;
+        }
+
+        .login-card .btn-outline-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        .login-card .text-decoration-none {
+            color: var(--color-danger); /* Rojo para el enlace */
+            transition: color 0.2s ease;
+        }
+
+        .login-card .text-decoration-none:hover {
+            color: #dc2626; /* Rojo más oscuro al hacer hover */
+        }
+
+        .login-card .spinner-border {
+            width: 2rem;
+            height: 2rem;
+        }
+
+        /* Iconos de usuario y contraseña en azul oscuro y más grandes */
+        .login-card .fa-user,
+        .login-card .fa-lock {
+            color: var(--color-secondary); /* Azul oscuro */
+            font-size: 1.2rem; /* Tamaño más grande */
+        }
+
+        /* Ojito para ver la contraseña en rojo al presionarlo */
+        .login-card .btn-outline-secondary.active .fa-eye {
+            color: var(--color-danger); /* Rojo */
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid vh-100 d-flex justify-content-center align-items-center">
+        <div class="card login-card">
+            <div class="card-body p-5">
+                <div class="text-center mb-4">
+                    <img src="img/logo-login.jpg" alt="Logo" class="logo mb-3">
+                    <h2 class="card-title">Iniciar Sesión</h2>
+                    <p class="text-muted">Ingresa tu Usuario y Contraseña para continuar</p>
+                </div>
+                <form id="loginForm">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">
+                            <i class="fas fa-user me-2"></i>Usuario
+                        </label>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Ingresa tu usuario" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">
+                            <i class="fas fa-lock me-2"></i>Contraseña
+                        </label>
+                        <div class="input-group">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+                            <button type="button" class="btn btn-outline-secondary" onclick="togglePassword(this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="d-grid mb-3">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-sign-in-alt me-2"></i>Ingresar
+                        </button>
+                    </div>
+                    <div class="text-center">
+                        <a href="#" class="text-decoration-none">¿Olvidaste tu contraseña?</a>
+                    </div>
+                </form>
+                <div id="loading" class="text-center mt-3" style="display: none;">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Cargando...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        function togglePassword(button) {
+            const passwordInput = document.getElementById("password");
+            const eyeIcon = button.querySelector(".fas");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                eyeIcon.classList.remove("fa-eye");
+                eyeIcon.classList.add("fa-eye-slash");
+                button.classList.add("active"); // Añade la clase "active" para cambiar el color
+            } else {
+                passwordInput.type = "password";
+                eyeIcon.classList.remove("fa-eye-slash");
+                eyeIcon.classList.add("fa-eye");
+                button.classList.remove("active"); // Remueve la clase "active"
+            }
+        }
+    </script>
+</body>
+</html>
